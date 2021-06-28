@@ -1,0 +1,64 @@
+/*
+ * Create Change
+ * Supporting creative industries through research, innovation
+ * and development initiatives since 2019.
+ *
+ * @link https://createchange.ro
+ * @author Eugen Bușoiu <eugen@createchange.ro>
+ *
+ * Copyright 2019-2020 Create Change
+ */
+
+// Button structure mixin
+.define-button (@textColor, @backgroundColor, @backgroundColorHover, @bottomBorderWidth: 3px) {
+  background-color: @backgroundColor;
+
+  color: @textColor;
+  text-decoration: none;
+
+  border: @bottomBorderWidth solid transparent;
+
+  &:hover {
+    background-color: @backgroundColorHover;
+
+    color: @textColor;
+    text-decoration: none;
+
+    border-left-color: darken(@backgroundColorHover, 4%);
+
+    // Icon separator hovered
+    span[data-icon].ic-sep {
+      border-left-color: lighten(@backgroundColorHover, 15%);
+    }
+  }
+
+  // Icon separator
+  span[data-icon].ic-sep {
+    border-left: 1px solid darken(@backgroundColorHover, 1%);
+  }
+}
+
+.define-button-bordered-only (@textColor, @bottomBorderColor, @bottomBorderHoverColor, @bottomBorderWidth: 3px) {
+
+  color: @textColor;
+  text-decoration: none;
+
+  border-width: @bottomBorderWidth;
+  border-style: solid none;
+  border-color: transparent;
+  border-radius: 0;
+
+  &:hover {
+    border-bottom-color: darken(@bottomBorderHoverColor, 4%);
+
+    // Icon separator hovered
+    span[data-icon].ic-sep {
+      border-left-color: lighten(@bottomBorderHoverColor, 15%);
+    }
+  }
+
+  // Icon separator
+  span[data-icon].ic-sep {
+    border-left: 1px solid darken(@bottomBorderHoverColor, 1%);
+  }
+}

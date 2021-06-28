@@ -1,0 +1,112 @@
+/*
+ * Create Change
+ * Non-governmental organization which aims to support creative industries.
+ *
+ * @author Eugen Bușoiu <eugen@createchange.ro>
+ * @link https://createchange.ro
+ * @copyright © 2019 - 2020. All rights reserved.
+ */
+
+// Dialog placeholder
+.dialog-placeholder {
+}
+
+.dialog-overlay {
+
+  &:before {
+    position: fixed;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .3);
+    z-index: 1;
+  }
+
+  // Blank (empty) placeholder
+  &.dialog-placeholder-blank:before {
+    background-color: transparent;
+  }
+
+  // Dialog
+  .dialog {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+  }
+}
+
+// Slide menu dialog
+.slide-menu-dialog-placeholder {
+
+  position: fixed;
+  content: '';
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  opacity: 1;
+  -webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+  transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+
+  background: rgba(0, 0, 0, .2);
+}
+
+.slide-menu-dialog {
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  .gr10;
+  height: 100%;
+
+  -webkit-transition: width 1s ease; //add this line(Safari)
+  transition: width 1s ease; //add this line(Safari)
+
+  background-color: @color7;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+
+  padding: 40px 0;
+
+  @media (min-width: @mediaQuerySmall) {
+    .gr6;
+  }
+
+  @media (min-width: @mediaQueryMedium) {
+    .gr3;
+  }
+
+  @media (min-width: @mediaQueryExtraLarge) {
+    .gr2;
+  }
+
+  ul {
+    li {
+
+      a {
+        display: block;
+
+        padding: 10px 20px;
+        font-size: 1rem;
+
+        border: none;
+        margin: 5px 20px;
+      }
+
+      &:last-child {
+
+        position: fixed;
+        bottom: 2rem;
+
+        .gr12;
+      }
+    }
+  }
+}

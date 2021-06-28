@@ -1,0 +1,101 @@
+/*
+ * Create Change
+ * Non-governmental organization which aims to support creative industries.
+ *
+ * @author Eugen Bușoiu <eugen@createchange.ro>
+ * @link https://createchange.ro
+ * @copyright © 2019 - 2020. All rights reserved.
+ */
+
+// Donate page
+.what-we-do-page {
+
+  // Covered image
+  &.covered {
+
+    @media (min-width: @mediaQueryLarge) {
+
+      // Side image
+      &:before {
+
+        background: url(@coverPathStarsInGlassMd) no-repeat center;
+        background-size: cover;
+      }
+    }
+  }
+
+  // Projects and initiatives
+  ul.our-initiatives {
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+
+    @media (min-width: @mediaQueryMedium) {
+      flex-flow: row wrap;
+    }
+
+    & > li {
+
+      &.box {
+
+        .gr12;
+        padding: 20px;
+        margin: 10px;
+
+        @media (min-width: @mediaQueryMedium) {
+          .gr5;
+        }
+      }
+
+      &:after {
+
+        position: absolute;
+        content: '';
+
+        right: 10%;
+        top: 0;
+
+        width: 40%;
+        height: 40%;
+
+        opacity: .04;
+      }
+
+      // IASI AI initiative cover
+      &.iasi-ai:after {
+
+        background-image: url('@{S3}work/iasi-ai/iasi-ai-logo.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+
+      // H5
+      h5 {
+        span {
+          display: block;
+          font-size: .76rem;
+          margin: 4px 0 0;
+          color: @color3;
+
+          text-transform: uppercase;
+        }
+      }
+
+      // Paragraph
+      p {
+        @media (min-width: @mediaQueryMedium) {
+          min-height: 100px;
+          line-height: 1.5rem;
+        }
+      }
+
+      // Navigation
+      nav {
+        margin: 10px 0 0;
+      }
+    }
+  }
+}

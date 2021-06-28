@@ -1,0 +1,89 @@
+/*
+ * Create Change
+ * Supporting creative industries through research, innovation
+ * and development initiatives since 2019.
+ *
+ * @link https://createchange.ro
+ * @author Eugen Bușoiu <eugen@createchange.ro>
+ *
+ * Copyright 2019-2020 Create Change
+ */
+
+// Header
+header {
+
+  padding: 30px 0;
+  background-color: @backgroundColor;
+  background: linear-gradient(180deg, rgba(241, 241, 241, 1) 0%, rgba(241, 241, 241, 0.6) 100%);
+
+  @media (min-width: @mediaQueryMedium) {
+    padding: 40px 0;
+  }
+
+  // Header container
+  section {
+
+    display: flex;
+    flex-flow: row nowrap;
+
+    // Heading
+    h1 {
+      display: block;
+      font-size: 0;
+
+      position: absolute;
+      transform: translateX(-50%);
+      left: 50%;
+
+      @media (min-width: @mediaQueryMedium) {
+        position: relative;
+        left: auto;
+        transform: none;
+      }
+    }
+
+    // Header navigation
+    nav {
+      .gr12;
+      text-align: right;
+
+      ul {
+
+        li {
+          display: inline;
+
+          @media (min-width: @mediaQueryMedium) {
+            margin: 0 0 0 20px;
+
+            &:nth-child(1) {
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Slide menu button
+  .btn-menu {
+    display: inline-block;
+
+    font-size: 2rem;
+    border-radius: 0;
+    background-color: transparent;
+    padding: 14px;
+
+    @media (min-width: @mediaQueryMedium) {
+      display: none;
+    }
+  }
+
+  // Slide menu
+  .slide-menu {
+    display: none;
+
+    @media (min-width: @mediaQueryMedium) {
+      display: inline-block;
+    }
+  }
+}

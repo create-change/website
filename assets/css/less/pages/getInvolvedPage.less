@@ -1,0 +1,26 @@
+/*
+ * Create Change
+ * Non-governmental organization which aims to support creative industries.
+ *
+ * @author Eugen Bușoiu <eugen@createchange.ro>
+ * @link https://createchange.ro
+ * @copyright © 2019 - 2020. All rights reserved.
+ */
+
+// Donate page
+.get-involved-page {
+
+  // Covered image
+  &.covered {
+
+    @media (min-width: @mediaQueryLarge) {
+
+      // Side image
+      &:before {
+
+        background: url(@coverMd) no-repeat center;
+        background-size: cover;
+      }
+    }
+  }
+}

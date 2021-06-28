@@ -1,0 +1,43 @@
+/*
+ * Create Change
+ * Supporting creative industries through research, innovation
+ * and development initiatives since 2019.
+ *
+ * @link https://createchange.ro
+ * @author Eugen Bușoiu <eugen@createchange.ro>
+ *
+ * Copyright 2019-2020 Create Change
+ */
+
+// Logo
+.logo {
+
+  display: inline-block;
+
+  width: 120px;
+  height: 59px;
+
+  background: url('@{S3}app.logo/1/logo-200.png') no-repeat center;
+  background-size: cover;
+
+  .text-hide;
+
+  @media (min-width: @mediaQueryMedium) {
+    display: block;
+
+    width: 141px;
+    height: 70px;
+
+    background: url('@{S3}app.logo/1/logo-300.png') no-repeat center;
+    background-size: cover;
+  }
+
+  // Logo small
+  &.logo-sm {
+    width: 120px;
+    height: 59px;
+
+    background: url('@{S3}app.logo/1/logo-200.png') no-repeat center;
+    background-size: cover;
+  }
+}

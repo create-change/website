@@ -1,0 +1,117 @@
+/*
+ * Create Change
+ * Supporting creative industries through research, innovation
+ * and development initiatives since 2019.
+ *
+ * @link https://createchange.ro
+ * @author Eugen Bușoiu <eugen@createchange.ro>
+ *
+ * Copyright 2019-2020 Create Change
+ */
+
+// AWS S3 bucket path
+@S3: 'https://static.createchange.ro/';
+
+// Devices
+// Small devices (landscape phones, 576px and up)
+@mediaQuerySmall: 576px;
+// Medium devices (tablets, 768px and up)
+@mediaQueryMedium: 768px;
+// Large devices (desktops, 992px and up)
+@mediaQueryLarge: 992px;
+// Extra large devices (large desktops, 1200px and up)
+@mediaQueryExtraLarge: 1200px;
+// HD
+@mediaQueryExtraLarge2x: 1400px;
+// QHD
+@mediaQueryExtraLarge3x: 1600px;
+// Full HD
+@mediaQueryExtraLarge4x: 1900px;
+
+// Colors
+@color1: #3c245b; // LogoColor
+@color2: #3d3d7a;
+@color3: #398aa4;
+@color4: #79c299;
+@color5: #fbf6a6;
+@color6: #333; // TextColor
+@color7: #f1f1f1; // BackgroundColor
+@color8: #fff;
+@color9: #777;
+@color10: #b80008; // Heart icon color
+@color11: #00457c; // PayPal icon color
+@color12: #df7926; // Wire Transfer icon color
+@color13: #fef13d; // Redirectioneaza.ro button color
+
+// Header cover
+// https://static.createchange.ro/app.cover/
+@coverPath: '@{S3}app.cover/bonding-friends/';
+@coverLg: '@{coverPath}cover-lg.jpg';
+@coverMd: '@{coverPath}cover.jpg';
+@coverSm: '@{coverPath}cover-sm.jpg';
+
+// Donate page cover
+@coverPathDonate: '@{S3}app.cover/donate/';
+@coverDonateLg: '@{coverPathDonate}donate-lg.jpg';
+@coverDonateMd: '@{coverPathDonate}donate.jpg';
+@coverDonateSm: '@{coverPathDonate}donate-sm.jpg';
+
+// Time for change cover
+@coverPathTimeForChange: '@{S3}app.cover/time-for-change/';
+@coverPathTimeForChangeLg: '@{coverPathTimeForChange}time-for-change-lg.jpg';
+@coverPathTimeForChangeMd: '@{coverPathTimeForChange}time-for-change.jpg';
+@coverPathTimeForChangeSm: '@{coverPathTimeForChange}time-for-change-sm.jpg';
+
+// Create drawing cover
+@coverPathCreateDrawing: '@{S3}app.cover/create-drawing/';
+@coverPathCreateDrawingLg: '@{coverPathCreateDrawing}create-drawing-lg.jpg';
+@coverPathCreateDrawingMd: '@{coverPathCreateDrawing}create-drawing.jpg';
+@coverPathCreateDrawingSm: '@{coverPathCreateDrawing}create-drawing-sm.jpg';
+
+// Artwork cover
+@coverPathArtwork: '@{S3}app.cover/artwork/';
+@coverPathArtworkLg: '@{coverPathArtwork}artwork-lg.jpg';
+@coverPathArtworkMd: '@{coverPathArtwork}artwork.jpg';
+@coverPathArtworkSm: '@{coverPathArtwork}artwork-sm.jpg';
+
+// Stars in Glass cover
+@coverPathStarsInGlass: '@{S3}app.cover/stars-in-glass/';
+@coverPathStarsInGlassLg: '@{coverPathStarsInGlass}stars-in-glass-lg.jpg';
+@coverPathStarsInGlassMd: '@{coverPathStarsInGlass}stars-in-glass.jpg';
+@coverPathStarsInGlassSm: '@{coverPathStarsInGlass}stars-in-glass-sm.jpg';
+
+// Element Colors
+@backgroundColor: @color7;
+@textColor: @color6;
+@linkColor: @color6;
+@textColorWhite: @color8;
+@scrollBarColor: @color2;
+
+// Buttons
+@buttonDisabledBackgroundColor: #f1f1f1;
+@buttonDisabledBackgroundHoverColor: #f1f1f1;
+@buttonDisabledTextColor: #999;
+
+@buttonDefaultBackgroundColor: @color4;
+@buttonDefaultBackgroundHoverColor: darken(@buttonDefaultBackgroundColor, 6%);
+@buttonDefaultTextColor: @textColor;
+
+@button1BackgroundColor: @color4;
+@button1BackgroundHoverColor: darken(@button1BackgroundColor, 6%);
+@button1BackgroundTextColor: @textColorWhite;
+
+@button2BackgroundColor: @color2;
+@button2BackgroundHoverColor: darken(@button2BackgroundColor, 6%);
+@button2BackgroundTextColor: @textColorWhite;
+
+@button3BackgroundColor: @color3;
+@button3BackgroundHoverColor: darken(@button3BackgroundColor, 6%);
+@button3BackgroundTextColor: @textColorWhite;
+
+@buttonFacebookBackgroundColor: #1877f2;
+@buttonFacebookBackgroundHoverColor: darken(@buttonFacebookBackgroundColor, 6%);
+@buttonFacebookBackgroundTextColor: @textColorWhite;
+
+@buttonRedirectioneazaBackgroundColor: @color13;
+@buttonRedirectioneazaBackgroundHoverColor: darken(@buttonRedirectioneazaBackgroundColor, 6%);
+@buttonRedirectioneazaBackgroundTextColor: @textColor;
