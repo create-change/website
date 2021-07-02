@@ -1,7 +1,5 @@
-*We've moved our website to a new location. Thank you GitHub for hosting us.* :purple_heart:
+## About Create Change :purple_heart:
 
-## About Create Change
-
-> Create Change focuses in supporting communities and individuals collaboration and involvement, shaping future changemakers of our society and creating a favourable context for growth.
+> Founded in 2019, *Create Change* is an independent, non-profit and non-governmental organization aiming to support creative industries, spurring innovation and accelerating development of communities and individuals.
 
 [Check our website](https://createchange.ro) or [connect with us](https://www.facebook.com/CreateChangeNGO/) on Facebook.
