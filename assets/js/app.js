@@ -6,15 +6,22 @@
  * @link https://createchange.ro
  * @author Eugen Bușoiu
  *
- * Copyright 2019-2021 All rights reserved.
+ * Copyright 2019-2022 All rights reserved.
  */
 
 'use strict';
 
 /**
- * Dialog class.
- * Opens modal dialogs.
+ * Dialog.js is a multipurpose lightweight highly configurable dialog library.
+ *
+ * @author Eugen Bușoiu <eugen@eugen.pro>
+ * @link https://github.com/eugenb/dialog.js
+ *
+ * @licence MIT <https://raw.githubusercontent.com/eugenb/dialog.js/master/LICENSE>
  */
+
+'use strict';
+
 class Dialog {
 
     /**
@@ -28,18 +35,18 @@ class Dialog {
         // Default options
         this.options = {
 
-            // Classes
+            // Styling classes
             dialogClassName: null,
             dialogPlaceholderClassName: null,
 
-            // Sizes
+            // Size
             size: {
                 x: 0,
                 y: 0
             },
             position: {},
 
-            // AutoShow
+            // Automatically trigger dialog show
             autoShow: true,
 
             // Events
@@ -54,9 +61,8 @@ class Dialog {
                 onClose: null
             },
 
-            // Link dialog relative to element
+            // Attach dialog relative to element
             linkTo: null
-
         };
 
         // Extend options
@@ -124,7 +130,7 @@ class Dialog {
 
         // Set dialog placeholder attributes
         this.dlgPlaceholder.setAttribute('dialog-id', Math.random().toString(36).substr(2, 9));
-        this.dlgPlaceholder.style.display = 'none';
+        this.dlgPlaceholder.style.visibility = 'hidden';
 
         // Set dialog attributes
         this.dlg.setAttribute('dialog-id', Math.random().toString(36).substr(2, 9));
@@ -135,17 +141,11 @@ class Dialog {
         // Append dialog
         document.body.appendChild(this.dlgPlaceholder);
 
-        // Calculate sizes
-        this.options.size = {
-            x: this.dlg.offsetWidth,
-            y: this.dlg.offsetHeight
-        };
-
         // Calculate viewport size(s)
         let viewportWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || 0,
             viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
 
-        // Render dialog linked to an existing element
+        // Render dialog attached to an existing element
         if (this.options.linkTo !== null) {
 
             // Move dialog next to linkTo element
@@ -159,9 +159,27 @@ class Dialog {
             // Append dialog to placeholder
             this.dlgPlaceholder.appendChild(this.dlg);
 
+            // Get dialog width
+            const dlgStyle = getComputedStyle(this.dlg),
+                dlgStyleWidth = dlgStyle.getPropertyValue('width'),
+                dlgStyleHeight = dlgStyle.getPropertyValue('height');
+
+            // Calculate sizes
+            this.options.size = {
+                x: dlgStyleWidth.match(/px/) ?
+                    parseInt(dlgStyleWidth.replace(/px/, '')) :
+                    dlgStyleWidth.match(/%/) ? (viewportWidth * parseInt(dlgStyleWidth.replace(/%/, ''))) / 100 : this.dlg.offsetWidth,
+                y: dlgStyleHeight.match(/px/) ?
+                    parseInt(dlgStyleHeight.replace(/px/, '')) :
+                    dlgStyleHeight.match(/%/) ? (viewportHeight * parseInt(dlgStyleHeight.replace(/%/, ''))) / 100 : this.dlg.offsetHeight
+            };
+
             // Set position coordinates based on provided values
-            this.dlg.style.marginLeft = this.options.position.x !== undefined ? `${this.options.position.x}px` : `${(viewportWidth - parseInt(this.options.size.x)) / 2}px`;
-            this.dlg.style.marginTop = this.options.position.y !== undefined ? `${this.options.position.y}px` : `${(viewportHeight - parseInt(this.options.size.y)) / 2}px`;
+            this.dlg.style.marginLeft = this.options.position.x !== undefined ? `${this.options.position.x}px` :
+                `${(viewportWidth - parseInt(this.options.size.x)) / 2}px`;
+
+            this.dlg.style.marginTop = this.options.position.y !== undefined ? `${this.options.position.y}px` :
+                `${(viewportHeight - parseInt(this.options.size.y)) / 2}px`;
         }
 
         // AutoClose
@@ -175,18 +193,18 @@ class Dialog {
         if (this.options.closeOnEsc) {
             document.addEventListener('keyup', e => {
 
-                let key = e.keyCode || e.which,
+                let key = e.code,
                     target = e.target;
 
                 if (target.nodeType === 3) {
                     target = target.parentNode;
                 }
 
-                if (!/(38|40|27|32)/.test(key) || /input|textarea/i.test(target.tagName)) {
+                if (!/(ArrowUp|ArrowDown|Escape|Space)/.test(key) || /input|textarea/i.test(target.tagName)) {
                     return;
                 }
 
-                if (key === 27 && this.isVisible()) {
+                if (key === 'Escape' && this.isVisible()) {
                     this.close();
                 }
             });
@@ -214,7 +232,7 @@ class Dialog {
                 }
 
                 // Show dialog
-                this.dlgPlaceholder.style.display = '';
+                this.dlgPlaceholder.style.visibility = 'visible';
 
                 // Trigger onBeforeShow callback
                 if (typeof this.options.callback.onShow === 'function') {
@@ -258,7 +276,7 @@ class Dialog {
      * @return {boolean}
      */
     isVisible() {
-        return !(this.dlgPlaceholder.style.display === 'none');
+        return this.dlgPlaceholder && !(this.dlgPlaceholder.style.visibility === 'visible');
     }
 
     /**
@@ -286,117 +304,68 @@ class Dialog {
 }
 
 /**
- * CreateChangeApp app class.
+ * Create Change application.
+ * @type {{slide: slideMenu}}
  */
-class CreateChangeApp {
-
-    // Constructor
-    constructor(args) {
-
-        // Callable methods
-        this.callable = [];
-
-        // Default options
-        this.options = {
-
-            // App url
-            url: null,
-
-            // CDN URL
-            cdn: null
-        };
-
-        // Extend default options with args
-        this.options = Object.assign(this.options, args);
-    }
+const CreateChangeApp = (() => {
 
     /**
-     * Register callable method.
-     *
-     * @param name Callable method name
-     * @param callable Callable method
-     * @param autoRun Auto run callable method when runCallable() is executed
+     * Enable slide menu for mobile devices.
      */
-    registerCallable(callable, name = null, autoRun = false) {
+    function slideMenu() {
 
-        // Callable must be function
-        if (typeof callable === 'function') {
-            this.callable[name === null ? Math.random().toString(36).substr(2, 9) : name] = {method: callable, autoRun: autoRun};
-        }
-    }
+        let slideMenuTrigger = document.querySelector('.btn-menu'),
+            slideMenu = document.querySelector('.slide-menu');
 
-    /**
-     * Run callable registered methods.
-     */
-    runCallable(name = null) {
+        if (slideMenuTrigger && slideMenu) {
+            slideMenuTrigger.addEventListener('click', e => {
+                e.preventDefault();
+                e.stopPropagation();
 
-        // Run all callable methods
-        if (name === null) {
-            for (let index in this.callable) {
-                if (this.callable.hasOwnProperty(index) && this.callable[index].autoRun) {
-                    this.callable[index].method();
+                // Slide dialog
+                const dlg = new Dialog(slideMenu.innerHTML, {
+                        dialogClassName: 'slide-menu-dialog',
+                        dialogPlaceholderClassName: 'slide-menu-dialog-placeholder',
+                        position: {
+                            x: 0,
+                            y: 0
+                        },
+                        callback: {
+                            onShow: () => {
+                                document.body.classList.add('no-scroll');
+                            },
+                            onClose: () => {
+                                document.body.classList.remove('no-scroll');
+                            }
+                        }
+                    }
+                );
+
+                // Attach event on slide close
+                let slideMenuCloseButton = dlg.dlg.querySelector('button.btn-slide-close');
+                if (slideMenuCloseButton) {
+                    slideMenuCloseButton.addEventListener('click', e => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        dlg.close();
+                    });
                 }
-            }
-        } else {
-            if (this.callable.hasOwnProperty(name)) {
-                this.callable[name]();
-            } else {
-                throw new Error(`[Callable] ${name} key missing.`);
-            }
+            });
         }
     }
-}
+
+    /**
+     * Exposed methods.
+     */
+    return {
+        slide: slideMenu
+    };
+
+})();
 
 /**
  * Initialize app.
  */
 (() => {
-
-    /**
-     * Create a new instance of CreateChangeApp.
-     *
-     * @type {CreateChangeApp}
-     */
-    const app = new CreateChangeApp({
-        url: 'https://createchange.ro/',
-        cdn: 'https://static.createchange.ro/'
-    });
-
-    /**
-     * Handling page scrolling.
-     */
-    app.registerCallable(() => {
-
-        let slideMenuTrigger = document.querySelector('.btn-menu'),
-            slideMenu = document.querySelector('.slide-menu');
-
-        if (slideMenuTrigger !== null && slideMenu !== null) {
-
-            slideMenuTrigger.addEventListener('click', () => {
-
-                new Dialog(slideMenu.innerHTML, {
-                    dialogClassName: 'slide-menu-dialog',
-                    dialogPlaceholderClassName: 'slide-menu-dialog-placeholder',
-                    position: {
-                        x: 0,
-                        y: 0
-                    },
-                    callback: {
-                        onShow: () => {
-                            document.body.classList.add('no-scroll');
-                        },
-                        onClose: () => {
-                            document.body.classList.remove('no-scroll');
-                        }
-                    }
-                });
-            });
-        }
-    }, 'slideMenu', true);
-
-    /**
-     * Execute registered callable methods.
-     */
-    app.runCallable();
-
+    CreateChangeApp.slide();
 })();
