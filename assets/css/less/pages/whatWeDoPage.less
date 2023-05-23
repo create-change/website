@@ -32,7 +32,7 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
 
     @media (min-width: @mediaQueryMedium) {
       flex-flow: row wrap;
@@ -41,13 +41,20 @@
     & > li {
 
       &.box {
+        display: flex;
+        flex-flow: column nowrap;
 
         .gr12;
         padding: 20px;
-        margin: 10px;
+        margin: 1.5em;
 
         @media (min-width: @mediaQueryMedium) {
           .gr5;
+          min-height: 250px;
+        }
+
+        & > p {
+          flex-grow: 1;
         }
       }
 
@@ -78,7 +85,7 @@
       h5 {
         span {
           display: block;
-          font-size: .76em;
+          font-size: .7em;
           margin: 4px 0 0;
           color: @color3;
 
