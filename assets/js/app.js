@@ -1,4 +1,4 @@
-/*
+/**
  * Create Change
  * Supporting creative industries through research, innovation
  * and development initiatives since 2019.
@@ -14,7 +14,7 @@
 /**
  * Dialog.js is a multipurpose lightweight highly configurable dialog library.
  *
- * @author Eugen Bușoiu <eugen@eugen.pro>
+ * @author Eugen Bușoiu
  * @link https://github.com/eugenb/dialog.js
  *
  * @licence MIT <https://raw.githubusercontent.com/eugenb/dialog.js/master/LICENSE>
